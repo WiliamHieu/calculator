@@ -1,20 +1,21 @@
 import React from "react";
 import "./button.css";
 
-// const isOperator = (operator) => {
-//   return !isNaN(operator) || operator === "." || operator === "=";
-// };
-
-const Button = (props) => {
-  return (
-    <div
-    // className={`button-wrapper ${
-    //   isOperator(props.children) ? null : "operator"
-    // }`}
-    >
-      {props.children}
-    </div>
-  );
+/*Checking boolean of params are numbers, . or = */
+const isOperator = (value) => {
+  return !isNaN(value) || value === "." || value === "=";
 };
 
-export default Button;
+export const Button = (props) => (
+  <div
+    /* If props.children are operator return null, or not return "operator"
+for changing color depend on class name 
+*/
+    className={`button-wrapper ${
+      isOperator(props.children) ? null : "operator"
+    }`}
+    onClick={() => props.handleClick(props.children)}
+  >
+    {props.children}
+  </div>
+);
